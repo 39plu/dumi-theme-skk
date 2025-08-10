@@ -1,6 +1,6 @@
-import { Tabs } from 'antd';
+import { Menu, MenuProps } from 'antd';
 import { createStyles } from 'antd-style';
-import { history, Link } from 'dumi';
+import { Link } from 'dumi';
 import NavbarExtra from 'dumi/theme-default/slots/NavbarExtra';
 import { memo, type FC } from 'react';
 import { shallow } from 'zustand/shallow';
@@ -55,29 +55,33 @@ const Navbar: FC = () => {
   const regLink = /^(\w+:)\/\/|^(mailto|tel):/;
   const nav = useSiteStore((s) => s.navData, shallow);
   const activePath = useSiteStore(activePathSel);
+  const createMenuItems = (navList: any[]): MenuProps['items'] => {
+    return navList.map((item) => ({
+      label: item.children ? (
+        <span> {item.title}</span>
+      ) : regLink.test(item.link || '') ? (
+        <a href={item.link} className={styles.link} target="_blank" rel="noreferrer">
+          {item.title}
+        </a>
+      ) : (
+        <Link className={styles.link} to={item.link!}>
+          {item.title}
+        </Link>
+      ),
+      key: item.activePath! || item.link!,
+      children: item.children ? createMenuItems(item.children) : undefined,
+    }));
+  };
+  const menuItems: MenuProps['items'] = createMenuItems(nav);
 
   return (
     <>
-      <Tabs
-        onChange={(path) => {
-          const url = nav.find((i) => i.activePath === path || i.link === path)?.link;
-          if (!url || regLink.test(url)) return;
-          history.push(url);
-        }}
-        activeKey={activePath}
+      <Menu
+        mode="horizontal"
+        style={{ lineHeight: '64px', backgroundColor: 'transparent' }}
+        accessKey={activePath}
         className={styles.tabs}
-        items={nav.map((item) => ({
-          label: regLink.test(item.link || '') ? (
-            <a href={item.link} className={styles.link} target="_blank" rel="noreferrer">
-              {item.title}
-            </a>
-          ) : (
-            <Link className={styles.link} to={item.link!}>
-              {item.title}
-            </Link>
-          ),
-          key: item.activePath! || item.link!,
-        }))}
+        items={menuItems}
       />
 
       <NavbarExtra />
