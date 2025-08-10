@@ -2,7 +2,7 @@ import { createStyles } from 'antd-style';
 import { Flexbox } from 'react-layout-kit';
 
 import chroma from 'chroma-js';
-import { useStore } from 'dumi-theme-antd-style/builtins/ColorPalettes/store';
+import { useStore } from '@39nyx/dumi-theme-skk/builtins/ColorPalettes/store';
 import { FC, useMemo } from 'react';
 import { invertColor } from './invertColor';
 

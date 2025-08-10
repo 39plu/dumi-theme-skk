@@ -6,7 +6,7 @@ import { Flexbox } from 'react-layout-kit';
 
 import Code from '../CodeSnippet';
 
-import { ApiHeaderProps } from 'dumi-theme-antd-style/src';
+import { ApiHeaderProps } from '@39nyx/dumi-theme-skk/src';
 import { useStyles } from './style';
 
 /**

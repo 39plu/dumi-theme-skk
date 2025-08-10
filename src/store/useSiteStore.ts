@@ -23,7 +23,7 @@ export interface SiteStore {
 
 export const createStore = (initState: SiteStore) =>
   createWithEqualityFn<SiteStore>()(
-    devtools(() => initState, { name: 'dumi-theme-antd-style' }),
+    devtools(() => initState, { name: 'dumi-theme-skk' }),
     equal,
   );
 

@@ -15,8 +15,8 @@
       "@@/*": ["example/.dumi/tmp/*", ".dumi/tmp/*"],
       "@/*": ["src"],
       "dumi/theme/*": ["example/.dumi/tmp/dumi/theme/*", ".dumi/tmp/dumi/theme/*"],
-      "dumi-theme-antd-style": ["src"],
-      "dumi-theme-antd-style/*": ["src/*", "*"]
+      "@39nyx/dumi-theme-skk": ["src"],
+      "@39nyx/dumi-theme-skk/*": ["src/*", "*"]
     }
   }
 }
