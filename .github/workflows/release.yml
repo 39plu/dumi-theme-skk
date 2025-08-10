@@ -7,17 +7,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Check if NPM_TOKEN exists
-        if: env.NPM_TOKEN == ''
-        run: echo "NPM_TOKEN is not set"
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Verify NPM_TOKEN
         run: |
             npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
             npm whoami --registry=https://registry.npmjs.org
-          env:
-            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   release:
     needs: test
     if: github.ref == 'refs/heads/main'  # 仅 main 发布
