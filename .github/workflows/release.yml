@@ -20,6 +20,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: pnpm install
       - run: pnpm build
+      - run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}  # 设置 npm 发布 token
       - run: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
