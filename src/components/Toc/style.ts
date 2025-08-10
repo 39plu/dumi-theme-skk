@@ -59,5 +59,34 @@ export const useStyles = createStyles(({ token, stylish, prefixCls, responsive, 
     anchor: css`
       ${stylish.blur}
     `,
+    drawerRoot: css`
+      top: ${token.headerHeight + 1}px;
+
+      :focus-visible {
+        outline: none;
+      }
+
+      .${prefixCls}-drawer {
+        &-mask {
+          background: transparent;
+          backdrop-filter: blur(7px);
+          background: ${rgba(token.colorBgBase, 0.5)};
+        }
+
+        &-content-wrapper {
+          box-shadow: none;
+        }
+      }
+    `,
+    drawer: css`
+      &.${prefixCls}-drawer-content {
+        background: transparent;
+      }
+
+      .${prefixCls}-drawer-body {
+        display: flex;
+        flex-direction: column;
+      }
+    `,
   };
 });

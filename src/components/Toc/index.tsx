@@ -1,10 +1,11 @@
 import { ArrowDownOutlined, MenuOutlined } from '@ant-design/icons';
-import { Anchor, Collapse, ConfigProvider } from 'antd';
+import { Anchor, Collapse, CollapseProps, ConfigProvider, Drawer } from 'antd';
 import { useResponsive, useTheme } from 'antd-style';
-import { memo, useMemo, type FC } from 'react';
+import React, { memo, MouseEvent, useMemo, useState } from 'react';
 import useControlledState from 'use-merge-value';
 
-import { AnchorItem } from '../../types';
+import { AnchorItem } from '@/types';
+import Sidebar from '../../slots/Sidebar';
 import { useStyles } from './style';
 
 /**
@@ -25,7 +26,8 @@ export interface TocProps {
    */
   onChange?: (activeKey: string) => void;
 }
-const Toc: FC<TocProps> = memo(({ items, activeKey, onChange }) => {
+
+const Toc: React.FC<TocProps> = memo(({ items, activeKey, onChange }) => {
   const [activeLink, setActiveLink] = useControlledState<string>('', {
     value: activeKey,
     onChange,
@@ -34,7 +36,7 @@ const Toc: FC<TocProps> = memo(({ items, activeKey, onChange }) => {
   const { mobile } = useResponsive();
 
   const theme = useTheme();
-  const activeAnchor = items.find((item) => item.id === activeLink);
+  const activeAnchor: AnchorItem | undefined = items.find((item) => item.id === activeLink);
 
   const linkItems = useMemo(
     () =>
@@ -42,7 +44,7 @@ const Toc: FC<TocProps> = memo(({ items, activeKey, onChange }) => {
         href: `#${item.id}`,
         title: item.title,
         key: item.id,
-        children: item.children?.map((child) => ({
+        children: item.children?.map((child: any) => ({
           href: `#${child.id}`,
           title: child?.title,
           key: child.id,
@@ -50,6 +52,42 @@ const Toc: FC<TocProps> = memo(({ items, activeKey, onChange }) => {
       })),
     [items],
   );
+
+  const [opened, setOpened] = useState(false);
+
+  const menuOutlinedClick = (event: MouseEvent) => {
+    event.stopPropagation();
+    setOpened(!opened);
+  };
+
+  const onClose = () => {
+    setOpened(false);
+  };
+
+  const [isActive, setIsActive] = useState(false);
+
+  const genExtra = () =>
+    isActive ? <ArrowDownOutlined /> : <MenuOutlined onClick={menuOutlinedClick} />;
+
+  const collapseItems: CollapseProps['items'] = [
+    {
+      key: 'toc',
+      label: !activeAnchor ? '目录' : activeAnchor.title,
+      forceRender: true,
+      extra: genExtra(),
+      children: (
+        <ConfigProvider theme={{ token: { fontSize: 14, sizeStep: 4 } }}>
+          <Anchor
+            onChange={(currentLink) => {
+              setActiveLink(currentLink.replace('#', ''));
+            }}
+            targetOffset={theme.headerHeight + 12}
+            items={linkItems}
+          />
+        </ConfigProvider>
+      ),
+    },
+  ];
 
   return (
     (items?.length === 0 ? null : mobile ? (
@@ -59,31 +97,33 @@ const Toc: FC<TocProps> = memo(({ items, activeKey, onChange }) => {
             bordered={false}
             ghost
             expandIconPosition={'end'}
-            expandIcon={({ isActive }) => (isActive ? <ArrowDownOutlined /> : <MenuOutlined />)}
             className={styles.expand}
-          >
-            <Collapse.Panel
-              forceRender
-              key={'toc'}
-              header={!activeAnchor ? '目录' : activeAnchor.title}
-            >
-              <ConfigProvider theme={{ token: { fontSize: 14, sizeStep: 4 } }}>
-                <Anchor
-                  onChange={(currentLink) => {
-                    setActiveLink(currentLink.replace('#', ''));
-                  }}
-                  targetOffset={theme.headerHeight + 12}
-                  items={linkItems}
-                />
-              </ConfigProvider>
-            </Collapse.Panel>
-          </Collapse>
+            items={collapseItems}
+            expandIcon={() => null}
+            onChange={() => setIsActive(!isActive)}
+          />
         </div>
+        <Drawer
+          open={opened}
+          placement={'left'}
+          rootClassName={styles.drawerRoot}
+          className={styles.drawer}
+          styles={{
+            body: { padding: 0 },
+          }}
+          onClose={onClose}
+        >
+          <Sidebar onSelect={onClose} />
+        </Drawer>
       </ConfigProvider>
     ) : (
       <div className={styles.container}>
         <h4>Table of Contents</h4>
-        <Anchor items={linkItems} className={styles.anchor} targetOffset={theme.headerHeight + 12}/>
+        <Anchor
+          items={linkItems}
+          className={styles.anchor}
+          targetOffset={theme.headerHeight + 12}
+        />
       </div>
     )) || null
   );
