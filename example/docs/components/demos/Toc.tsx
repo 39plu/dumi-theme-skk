@@ -1,7 +1,7 @@
 /**
  * iframe: 380
  */
-import { DumiSiteProvider, Toc } from 'dumi-theme-antd-style';
+import { DumiSiteProvider, Toc } from '@39nyx/dumi-theme-skk';
 import { Flexbox } from 'react-layout-kit';
 
 const items = [

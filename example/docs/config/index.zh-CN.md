@@ -7,7 +7,7 @@ nav:
 
 # 主题配置
 
-`dumi-theme-antd-style` 为了更好地满足自定义诉求，增加了一些特有字段，并将其置于 `dumi` 主题配置项 `themeConfig` 字段中，具体配置字段如下：
+`@39nyx/dumi-theme-skk` 为了更好地满足自定义诉求，增加了一些特有字段，并将其置于 `dumi` 主题配置项 `themeConfig` 字段中，具体配置字段如下：
 
 ## 基础配置
 
@@ -158,7 +158,7 @@ export default defineConfig({
 - 类型：`boolean`
 - 默认值：`false`
 
-在[某些场景下](https://github.com/arvinxx/dumi-theme-antd-style/issues/116), 会需要隐藏 header 中的 name 部分，可以通过配置该字段为 `true` 来实现。
+在[某些场景下](https://github.com/arvinxx/@39nyx/dumi-theme-skk/issues/116), 会需要隐藏 header 中的 name 部分，可以通过配置该字段为 `true` 来实现。
 
 ## 高级配置
 
@@ -179,7 +179,7 @@ export default defineConfig({
   themeConfig: {
     apiHeader: {
       // 组件库包名，可以从 package.json 中引入名称
-      pkg: 'dumi-theme-antd-style',
+      pkg: '@39nyx/dumi-theme-skk',
       // 匹配路由，默认为 /api 或 /components
       match: ['/api', '/components'],
       // github 会匹配 themeConfig.github 字段
@@ -240,7 +240,7 @@ export interface PrismSyntaxTheme {
 
 ```ts
 // 配置方式
-import { HighlighterSyntaxTheme } from 'dumi-theme-antd-style';
+import { HighlighterSyntaxTheme } from '@39nyx/dumi-theme-skk';
 import { vs, vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 export default defineConfig({

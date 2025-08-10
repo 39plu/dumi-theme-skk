@@ -2,7 +2,7 @@
  * title: 自定义主题
  * description: 自定义了暗色和亮色模式下的高亮效果
  */
-import { DumiSiteProvider, Highlighter } from 'dumi-theme-antd-style';
+import { DumiSiteProvider, Highlighter } from '@39nyx/dumi-theme-skk';
 
 const text = `
 import { ReactElement, useMemo } from 'react';

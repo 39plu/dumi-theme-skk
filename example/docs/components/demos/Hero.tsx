@@ -1,7 +1,7 @@
 /**
  * iframe: 600
  */
-import { DumiSiteProvider, Hero } from 'dumi-theme-antd-style';
+import { DumiSiteProvider, Hero } from '@39nyx/dumi-theme-skk';
 import { Center } from 'react-layout-kit';
 
 export default () => (

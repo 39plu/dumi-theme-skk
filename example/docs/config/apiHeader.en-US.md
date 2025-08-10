@@ -6,7 +6,7 @@ nav: Configuration
 
 # Custom ApiHeader
 
-In some business scenarios ([issue #9](https://github.com/arvinxx/dumi-theme-antd-style/issues/9#issuecomment-1459116041)), users of the theme package may need to customize some content in ApiHeader. This can be achieved by customizing the slot.
+In some business scenarios ([issue #9](https://github.com/arvinxx/@39nyx/dumi-theme-skk/issues/9#issuecomment-1459116041)), users of the theme package may need to customize some content in ApiHeader. This can be achieved by customizing the slot.
 
 Create a `ApiHeader` folder in the `.dumi/theme/slots` directory and add an `index.tsx` file. Then add the following code to customize the display of ApiHeader:
 
@@ -14,7 +14,7 @@ Create a `ApiHeader` folder in the `.dumi/theme/slots` directory and add an `ind
 //.dumi/theme/slots/ApiHeader/index.tsx
 
 import { SmileOutlined } from '@ant-design/icons';
-import { ApiHeader as Header, siteSelectors, useSiteStore } from 'dumi-theme-antd-style';
+import { ApiHeader as Header, siteSelectors, useSiteStore } from '@39nyx/dumi-theme-skk';
 import { FC, memo } from 'react';
 
 const ApiHeader: FC = memo(() => {

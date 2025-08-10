@@ -1,4 +1,4 @@
-import { IFeature } from 'dumi-theme-antd-style';
+import { IFeature } from '@39nyx/dumi-theme-skk';
 
 export const featuresZh: IFeature[] = [
   {

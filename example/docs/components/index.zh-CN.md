@@ -23,10 +23,10 @@ nav:
 
 ## 使用
 
-如果你希望独立使用 `dumi-theme-antd-style` 所提供的组件，你需要手动在外层包裹一次 `DumiSiteProvider`，例如：
+如果你希望独立使用 `@39nyx/dumi-theme-skk` 所提供的组件，你需要手动在外层包裹一次 `DumiSiteProvider`，例如：
 
 ```tsx | pure
-import { DumiSiteProvider, Hero } from 'dumi-theme-antd-style';
+import { DumiSiteProvider, Hero } from '@39nyx/dumi-theme-skk';
 
 export default () => (
   <DumiSiteProvider>
@@ -35,4 +35,4 @@ export default () => (
 );
 ```
 
-但如果你是在 `dumi-theme-antd-style` 下复用组件，则不需要包裹 `DumiSiteProvider`， 主题包中会自动为文档包裹一层 `DumiSiteProvider`，详见[源码](https://github.com/arvinxx/dumi-theme-antd-style/blob/master/src/layouts/DocLayout/index.tsx#L58)。
+但如果你是在 `@39nyx/dumi-theme-skk` 下复用组件，则不需要包裹 `DumiSiteProvider`， 主题包中会自动为文档包裹一层 `DumiSiteProvider`，详见[源码](https://github.com/arvinxx/@39nyx/dumi-theme-skk/blob/master/src/layouts/DocLayout/index.tsx#L58)。

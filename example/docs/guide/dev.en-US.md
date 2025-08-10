@@ -8,7 +8,7 @@ group: Introduction
 
 ## Development Status
 
-`dumi-theme-antd-style` is currently under development. If you have any related issues, please provide feedback in [issues](https://github.com/arvinxx/dumi-theme-antd-style/issues).
+`@39nyx/dumi-theme-skk` is currently under development. If you have any related issues, please provide feedback in [issues](https://github.com/arvinxx/@39nyx/dumi-theme-skk/issues).
 
 ## Development
 

@@ -1,6 +1,6 @@
-import { DumiSiteProvider, Highlighter } from 'dumi-theme-antd-style';
+import { DumiSiteProvider, Highlighter } from '@39nyx/dumi-theme-skk';
 
-const text = `import { DumiSiteProvider, Highlighter } from 'dumi-theme-antd-style';`;
+const text = `import { DumiSiteProvider, Highlighter } from '@39nyx/dumi-theme-skk';`;
 
 export default () => (
   <DumiSiteProvider>

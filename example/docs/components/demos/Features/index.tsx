@@ -4,7 +4,7 @@
  * description: 支持用户交互、断点响应
  */
 
-import { DumiSiteProvider, Features } from 'dumi-theme-antd-style';
+import { DumiSiteProvider, Features } from '@39nyx/dumi-theme-skk';
 import { Flexbox } from 'react-layout-kit';
 
 import { antdStyleItems } from './config';

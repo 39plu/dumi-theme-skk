@@ -5,7 +5,7 @@ nav:
   order: 4
 ---
 
-`dumi-theme-antd-style` For better customizability, some special fields are added, and they are placed in the `themeConfig` field of the `dumi` theme configuration item. The specific configuration fields are as follows:
+`@39nyx/dumi-theme-skk` For better customizability, some special fields are added, and they are placed in the `themeConfig` field of the `dumi` theme configuration item. The specific configuration fields are as follows:
 
 ## Basic Config
 
@@ -101,7 +101,7 @@ export default defineConfig({
   themeConfig: {
     apiHeader: {
       // 组件库包名，可以从 package.json 中引入名称
-      pkg: 'dumi-theme-antd-style',
+      pkg: '@39nyx/dumi-theme-skk',
       // 匹配路由，默认为 /api 或 /components
       match: ['/api', '/components'],
       // github 会匹配 themeConfig.github 字段

@@ -1,6 +1,7 @@
 /**
  * iframe: 380
  */
+import { DumiSiteProvider, Footer } from '@39nyx/dumi-theme-skk';
 import {
   GithubOutlined,
   HistoryOutlined,
@@ -9,7 +10,6 @@ import {
   TwitterOutlined,
   ZhihuOutlined,
 } from '@ant-design/icons';
-import { DumiSiteProvider, Footer } from 'dumi-theme-antd-style';
 
 const footer = [
   {

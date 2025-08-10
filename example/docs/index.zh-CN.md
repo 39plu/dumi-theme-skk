@@ -6,7 +6,7 @@ actions:
   - text: 开始使用
     link: /guide
   - text: Github
-    link: https://github.com/arvinxx/dumi-theme-antd-style
+    link: https://github.com/arvinxx/@39nyx/dumi-theme-skk
     openExternal: true
 
 features:

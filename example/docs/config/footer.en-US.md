@@ -17,7 +17,7 @@ Create a `.dumi/theme/slots` directory in your project and then create a `Footer
 ```tsx | pure
 //.dumi/theme/slots/Footer/index.tsx
 
-import { Footer } from 'dumi-theme-antd-style';
+import { Footer } from '@39nyx/dumi-theme-skk';
 
 export default () => {
   return <Footer bottom={'Customized'} />;
@@ -27,11 +27,11 @@ export default () => {
 The resulting code block looks like this:
 
 ```tsx
-import { Footer } from 'dumi-theme-antd-style';
+import { Footer } from '@39nyx/dumi-theme-skk';
 
 export default () => {
   return <Footer bottom={'Customized'} />;
 };
 ```
 
-If you need to customize the columns, please refer to the Footer [source code](https://github.com/arvinxx/dumi-theme-antd-style/blob/master/src/slots/Footer/index.tsx) reference in this theme.
+If you need to customize the columns, please refer to the Footer [source code](https://github.com/arvinxx/@39nyx/dumi-theme-skk/blob/master/src/slots/Footer/index.tsx) reference in this theme.

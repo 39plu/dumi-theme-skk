@@ -6,7 +6,7 @@ nav: 配置
 
 # 自定义 ApiHeader
 
-在一些业务场景下（[issue #9](https://github.com/arvinxx/dumi-theme-antd-style/issues/9#issuecomment-1459116041)），主题包用户可能需要自定义 ApiHeader 中的部分内容。 此时可以通过自定义 slot 来实现。
+在一些业务场景下（[issue #9](https://github.com/arvinxx/@39nyx/dumi-theme-skk/issues/9#issuecomment-1459116041)），主题包用户可能需要自定义 ApiHeader 中的部分内容。 此时可以通过自定义 slot 来实现。
 
 在 `.dumi/theme/slots` 目录下创建 `ApiHeader` 文件夹，并添加 `index.tsx` 文件。然后添加以下代码，即可自定义 ApiHeader 的展示：
 
@@ -14,7 +14,7 @@ nav: 配置
 //.dumi/theme/slots/ApiHeader/index.tsx
 
 import { SmileOutlined } from '@ant-design/icons';
-import { ApiHeader as Header, siteSelectors, useSiteStore } from 'dumi-theme-antd-style';
+import { ApiHeader as Header, siteSelectors, useSiteStore } from '@39nyx/dumi-theme-skk';
 import { FC, memo } from 'react';
 
 const ApiHeader: FC = memo(() => {

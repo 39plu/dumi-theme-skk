@@ -1,8 +1,8 @@
 /**
  * iframe: 460
  */
+import { DumiSiteProvider, Highlighter } from '@39nyx/dumi-theme-skk';
 import { useAntdTheme, useTheme } from 'antd-style';
-import { DumiSiteProvider, Highlighter } from 'dumi-theme-antd-style';
 import { omit } from 'lodash';
 import { Flexbox } from 'react-layout-kit';
 

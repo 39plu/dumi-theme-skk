@@ -1,5 +1,5 @@
+import type { SiteThemeConfig } from '@39nyx/dumi-theme-skk';
 import { defineConfig } from 'dumi';
-import type { SiteThemeConfig } from 'dumi-theme-antd-style';
 import path from 'path';
 
 import { homepage, name } from '../package.json';
@@ -30,7 +30,7 @@ export default defineConfig({
     { id: 'zh-CN', name: '中文' },
   ],
   alias: {
-    'dumi-theme-antd-style': path.join(__dirname, '../src'),
+    '@39nyx/dumi-theme-skk': path.join(__dirname, '../src'),
   },
   styles: [
     `html, body { background: transparent;  }

@@ -23,10 +23,10 @@ Currently available components are as follows:
 
 ## Usage
 
-If you want to use the components provided by `dumi-theme-antd-style` independently, you need to manually wrap them with `DumiSiteProvider`, for example:
+If you want to use the components provided by `@39nyx/dumi-theme-skk` independently, you need to manually wrap them with `DumiSiteProvider`, for example:
 
 ```tsx | pure
-import { DumiSiteProvider, Hero } from 'dumi-theme-antd-style';
+import { DumiSiteProvider, Hero } from '@39nyx/dumi-theme-skk';
 
 export default () => (
   <DumiSiteProvider>
@@ -35,4 +35,4 @@ export default () => (
 );
 ```
 
-But if you are reusing components under `dumi-theme-antd-style`, you do not need to wrap them with `DumiSiteProvider`. The theme package will automatically wrap the document with `DumiSiteProvider`, as detailed in the [source code](https://github.com/arvinxx/dumi-theme-antd-style/blob/master/src/layouts/DocLayout/index.tsx#L58).
+But if you are reusing components under `@39nyx/dumi-theme-skk`, you do not need to wrap them with `DumiSiteProvider`. The theme package will automatically wrap the document with `DumiSiteProvider`, as detailed in the [source code](https://github.com/arvinxx/@39nyx/dumi-theme-skk/blob/master/src/layouts/DocLayout/index.tsx#L58).

@@ -10,7 +10,7 @@ token:
 
 # Theme
 
-The `dumi-theme-antd-style` supports both light and dark themes by default.
+The `@39nyx/dumi-theme-skk` supports both light and dark themes by default.
 
 ## Color Palette
 

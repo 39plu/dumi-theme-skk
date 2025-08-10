@@ -1,8 +1,8 @@
 /**
  * iframe: true
  */
+import { ApiHeader, DumiSiteProvider } from '@39nyx/dumi-theme-skk';
 import { AntDesignOutlined } from '@ant-design/icons';
-import { ApiHeader, DumiSiteProvider } from 'dumi-theme-antd-style';
 import { Flexbox } from 'react-layout-kit';
 
 export default () => (

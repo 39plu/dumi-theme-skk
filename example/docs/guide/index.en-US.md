@@ -18,4 +18,4 @@ In the development process of [**Ant Design Style**](https://github.com/ant-desi
 
 ## Feedback
 
-If you encounter any problems during use or have suggestions for improvement, please feel free to provide feedback on [**GitHub Issues**](https://github.com/arvinxx/dumi-theme-antd-style/issues).
+If you encounter any problems during use or have suggestions for improvement, please feel free to provide feedback on [**GitHub Issues**](https://github.com/arvinxx/@39nyx/dumi-theme-skk/issues).
