@@ -1,60 +1,40 @@
 name: Release CI
 on:
   push:
-    branches:
-      - master
-      - alpha
-      - beta
-      - rc
+    branches: [main, alpha, beta, rc]
 
 jobs:
   test:
-    name: Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v2
         with:
           version: 8
-
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: '18'
-
-      - name: Install deps
-        run: pnpm install
-
-      - name: Test
-        run: pnpm run test
+          cache: 'pnpm'
+      - run: pnpm install
+      - run: pnpm test
 
   release:
     needs: test
-    name: Release
+    if: github.ref == 'refs/heads/main'  # 仅 main 发布
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v3
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v2
         with:
           version: 8
-
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: '18'
-
-      - name: Install deps
-        run: pnpm install
-
-      - name: build
-        run: pnpm run build
-
-      - name: release
-        run: pnpm run release
+          registry-url: 'https://registry.npmjs.org'
+      - run: pnpm install
+      - run: pnpm build
+      - run: pnpm release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
