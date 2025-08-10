@@ -28,6 +28,9 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: pnpm install
       - run: pnpm build
+      - run: |
+          npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
+          npm publish --dry-run
       - run: pnpm release
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
