@@ -1,5 +1,31 @@
 # Changelog
 
+## [Version&nbsp;1.1.0](https://github.com/39plu/dumi-theme-skk/compare/v1.0.0...v1.1.0)
+
+<sup>Released on **2025-08-10**</sup>
+
+#### ✨ 新特性
+
+- 移除测试配置, 设置 npm 的 token.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's improved
+
+- 移除测试配置 ([ad3f070](https://github.com/39plu/dumi-theme-skk/commit/ad3f070))
+- 设置 npm 的 token ([f093cb7](https://github.com/39plu/dumi-theme-skk/commit/f093cb7))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
 ## Version&nbsp;1.0.0
 
 <sup>Released on **2025-08-10**</sup>
