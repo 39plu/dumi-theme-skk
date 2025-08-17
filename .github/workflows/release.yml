@@ -1,11 +1,11 @@
 name: Release CI
 on:
   push:
-    branches: [release, alpha, beta, rc]
+    branches: [main, alpha, beta, rc]
 
 jobs:
   release:
-    if: github.ref == 'refs/heads/release'  # 仅 release 发布
+    if: github.ref == 'refs/heads/main'  # 仅 main 发布
     runs-on: ubuntu-latest
     permissions:
       contents: write
