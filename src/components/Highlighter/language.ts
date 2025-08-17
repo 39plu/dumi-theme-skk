@@ -1,28 +1,27 @@
-import bash from 'react-syntax-highlighter/dist/cjs/languages/prism/bash';
-import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css';
-import diff from 'react-syntax-highlighter/dist/cjs/languages/prism/diff';
-import javascript from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript';
-import json from 'react-syntax-highlighter/dist/cjs/languages/prism/json';
-import jsx from 'react-syntax-highlighter/dist/cjs/languages/prism/jsx';
-import less from 'react-syntax-highlighter/dist/cjs/languages/prism/less';
-import markdown from 'react-syntax-highlighter/dist/cjs/languages/prism/markdown';
-import tsx from 'react-syntax-highlighter/dist/cjs/languages/prism/tsx';
-import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typescript';
-
-export const languageMap = {
-  javascript,
-  js: javascript,
-  jsx,
-  json,
-  markdown,
-  md: markdown,
-  less,
-  css,
-  typescript,
-  ts: typescript,
-  tsx,
-  diff,
-  bash,
+export const BundledLanguage = {
+  bash: () => import('@shikijs/langs/bash'),
+  css: () => import('@shikijs/langs/css'),
+  scss: () => import('@shikijs/langs/scss'),
+  sass: () => import('@shikijs/langs/sass'),
+  less: () => import('@shikijs/langs/less'),
+  diff: () => import('@shikijs/langs/diff'),
+  json: () => import('@shikijs/langs/json'),
+  typescript: () => import('@shikijs/langs/typescript'),
+  javascript: () => import('@shikijs/langs/javascript'),
+  vue: () => import('@shikijs/langs/vue'),
+  markdown: () => import('@shikijs/langs/markdown'),
+  tsx: () => import('@shikijs/langs/tsx'),
+  jsx: () => import('@shikijs/langs/jsx'),
+  java: () => import('@shikijs/langs/java'),
+  python: () => import('@shikijs/langs/python'),
 };
 
-export type LanguageKeys = keyof typeof languageMap;
+export enum ThemeEnum {
+  dark = 'andromeeda',
+  light = 'light-plus'
+}
+
+export const BundledTheme = {
+  [ThemeEnum.dark]: () => import('@shikijs/themes/andromeeda'),
+  [ThemeEnum.light]: () => import('@shikijs/themes/light-plus'),
+};

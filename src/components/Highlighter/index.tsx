@@ -3,17 +3,13 @@ import { Button, ConfigProvider, Tooltip } from 'antd';
 import copy from 'copy-to-clipboard';
 import { CSSProperties, FC, memo } from 'react';
 
-import { PrismSyntaxTheme } from '@39nyx/dumi-theme-skk/components/Highlighter/Prism';
 import { ShikiSyntaxTheme } from '@39nyx/dumi-theme-skk/components/Highlighter/useShiki';
 import { useCopied } from '../../hooks/useCopied';
 import SyntaxHighlighter from './Highlighter';
-import { LanguageKeys } from './language';
 import { useStyles } from './style';
-export { Prism } from './Prism';
 
 export interface HighlighterSyntaxTheme {
   shiki?: Partial<ShikiSyntaxTheme>;
-  prism?: Partial<PrismSyntaxTheme>;
 }
 /**
  * 语法高亮器的属性
@@ -26,7 +22,7 @@ export interface HighlighterProps {
   /**
    * 语言类型，可以是语言的字符串标识或者枚举类型
    */
-  language: LanguageKeys | string;
+  language: string;
   /**
    * 语法高亮器的类型
    * @default 'shiki'

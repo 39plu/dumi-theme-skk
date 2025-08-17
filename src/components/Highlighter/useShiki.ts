@@ -1,64 +1,39 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
-import { Highlighter, Theme, getHighlighter, setCDN } from 'shiki-es';
-import useControlledState from 'use-merge-value';
-
-import { languageMap } from './language';
+import { createHighlighterCore, createJavaScriptRegexEngine, type Highlighter } from 'shiki';
+import { BundledLanguage, BundledTheme, ThemeEnum } from './language';
 
 export interface ShikiSyntaxTheme {
-  dark: Theme;
-  light: Theme;
+  dark: any;
+  light: any;
 }
 
 export interface ShikiOptions {
-  onInit?: (instance: Highlighter) => void;
+  onInit?: (instance: any) => void;
   onLoadingChange?: (loading: boolean) => void;
   theme?: Partial<ShikiSyntaxTheme>;
 }
 
-// 使用 element cdn 提升加载速度
-setCDN('https://npm.elemecdn.com/shiki-es/dist/assets');
+// 缓存高亮器实例
+let highlighter: any | null = null;
 
-const defaultTheme: ShikiSyntaxTheme = {
-  dark: 'github-dark',
-  light: 'github-light',
-};
-
-export const useShiki = ({ onLoadingChange, theme }: ShikiOptions) => {
-  const mergeTheme = useMemo(() => ({ ...defaultTheme, ...theme }), [theme]);
-  const [THEME] = useControlledState(defaultTheme, { value: mergeTheme });
-
-  const shikiRef = useRef<Highlighter | null>(null);
-
-  const initHighlighter = async (theme: ShikiSyntaxTheme) => {
-    onLoadingChange?.(true);
-
-    shikiRef.current = await getHighlighter({
-      langs: Object.keys(languageMap) as any,
-      themes: Object.values(theme),
+export async function getShikiHighlighter(): Promise<Highlighter> {
+  if (!highlighter) {
+    highlighter = createHighlighterCore({
+      themes: Object.values(BundledTheme),
+      langs: Object.values(BundledLanguage),
+      engine: createJavaScriptRegexEngine(),
     });
+  }
+  return highlighter;
+}
 
-    onLoadingChange?.(false);
-  };
-
-  // 初始化 Shiki HightLighter
-  useEffect(() => {
-    initHighlighter(THEME);
-  }, [THEME]);
-
-  return useCallback(
-    (text: string, language: any, isDarkMode: boolean) => {
-      try {
-        return (
-          shikiRef.current?.codeToHtml(text, {
-            lang: language,
-            theme: isDarkMode ? THEME.dark : THEME.light,
-          }) || ''
-        );
-      } catch (e) {
-        onLoadingChange?.(true);
-        initHighlighter(THEME);
-      }
-    },
-    [THEME],
-  );
-};
+export async function highlightCode(
+  code: string,
+  lang = 'typescript',
+  isDarkMode: boolean,
+): Promise<string> {
+  const hightlighter = await getShikiHighlighter();
+  return hightlighter.codeToHtml(code, {
+    lang,
+    theme: isDarkMode ? ThemeEnum.dark: ThemeEnum.light
+  });
+}
