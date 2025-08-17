@@ -6,7 +6,6 @@ import { FC } from 'react';
 
 import { Highlighter } from '../Highlighter';
 
-import { vs, vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { useCopied } from '../../hooks/useCopied';
 import { useStyles } from './style';
 
@@ -35,18 +34,7 @@ const CodeSnippet: FC<{ children: string }> = ({ children }) => {
           setCopied();
         }}
       >
-        <Highlighter
-          background={false}
-          type={'prism'}
-          copyable={false}
-          syntaxThemes={{
-            prism: {
-              dark: vscDarkPlus,
-              light: vs,
-            },
-          }}
-          language={'js'}
-        >
+        <Highlighter background={false} type={'prism'} copyable={false} language={'js'}>
           {children}
         </Highlighter>
       </div>
