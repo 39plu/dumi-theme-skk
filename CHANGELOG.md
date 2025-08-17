@@ -1,5 +1,38 @@
 # Changelog
 
+## [Version&nbsp;1.3.0](https://github.com/39plu/dumi-theme-skk/compare/v1.2.0...v1.3.0)
+
+<sup>Released on **2025-08-17**</sup>
+
+#### ✨ 新特性
+
+- 代码高亮统一采用 shiki.
+
+#### 🐛 修复
+
+- 修复移除 Prism 之后代码报错问题.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's improved
+
+- 代码高亮统一采用 shiki ([5f2281e](https://github.com/39plu/dumi-theme-skk/commit/5f2281e))
+
+#### What's fixed
+
+- 修复移除 Prism 之后代码报错问题 ([764aab0](https://github.com/39plu/dumi-theme-skk/commit/764aab0))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
 ## [Version&nbsp;1.2.0](https://github.com/39plu/dumi-theme-skk/compare/v1.1.0...v1.2.0)
 
 <sup>Released on **2025-08-17**</sup>
