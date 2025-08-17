@@ -1,68 +1,48 @@
-import { extractStaticStyle } from 'antd-style';
-import chalk from 'chalk';
+import { EnableBy } from '@umijs/core/dist/types';
 import type { IApi } from 'dumi';
-import fs from 'fs';
-import { join } from 'path';
-
-import { getHash } from './utils';
+import SSRPlugin from './SSRPlugin';
+import VuePresetPlugin from './VuePresetPlugin';
 
 /*
  * SSR 抽取样式
  */
-const SSRPlugin = (api: IApi) => {
+const SkkPlugin = (api: IApi) => {
   api.describe({
     key: '@39nyx/dumi-theme-skk',
   });
 
-  // 如果没有开启 SSR，则啥也不做
-  if (!api.userConfig.ssr) return;
-
-  api.logger.info('detect ssr config, when building html will extract css.');
-
-  const writeCSSFile = (key: string, hashKey: string, cssString: string) => {
-    const fileName = `ssr-${key}.${getHash(hashKey)}.css`;
-
-    const filePath = join(api.paths.absOutputPath, fileName);
-
-    if (!fs.existsSync(filePath)) {
-      api.logger.event(chalk.grey(`write to: ${filePath}`));
-      fs.writeFileSync(filePath, cssString, 'utf8');
-    }
-
-    return fileName;
-  };
-
-  const addLinkStyle = (html: string, cssFile: string) => {
-    const prefix = api.userConfig.publicPath || api.config.publicPath;
-    return html.replace('</head>', `<link rel="stylesheet" href="${prefix + cssFile}"></head>`);
-  };
-
-  api.modifyExportHTMLFiles((files) =>
-    files
-      // exclude dynamic route path, to avoid deploy failed by `:id` directory
-      .filter((f) => !f.path.includes(':'))
-
-      .map((file) => {
-        const antdCache = (global as any).__ANTD_CACHE__;
-
-        // 提取 antd-style 样式到独立 css 文件
-        const styles = extractStaticStyle(file.content, { antdCache });
-
-        styles.forEach((result) => {
-          api.logger.event(
-            `${chalk.yellow(file.path)} include ${chalk.blue`[${result.key}]`} ${chalk.yellow(
-              result.ids.length,
-            )} styles`,
-          );
-
-          const cssFile = writeCSSFile(result.key, result.ids.join(''), result.css);
-
-          file.content = addLinkStyle(file.content, cssFile);
+  api.describe({
+    key: 'skk',
+    config: {
+      schema({ zod }) {
+        return zod.object({
+          enableVue: zod.boolean().optional(),
+          directory: zod.string().optional(),
+          tsconfigPath: zod.string().optional(),
+          checkerOptions: zod.object({}).optional(),
+          compiler: zod
+            .object({
+              babelStandaloneCDN: zod.string().optional(),
+            })
+            .optional(),
         });
+      },
+    },
+    enableBy: EnableBy.config,
+  });
 
-        return file;
-      }),
-  );
+  if (api.userConfig.skk) {
+    // 开启Vue解析插件
+    if (api.userConfig.skk.enableVue) {
+      console.log('启用vue解析插件');
+      VuePresetPlugin(api);
+    }
+  }
+
+  // 如果没有开启 SSR，则啥也不做
+  if (api.userConfig.ssr) {
+    SSRPlugin(api);
+  }
 };
 
-export default SSRPlugin;
+export default SkkPlugin;
