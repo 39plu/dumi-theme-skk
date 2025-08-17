@@ -1,5 +1,30 @@
 # Changelog
 
+## [Version&nbsp;1.2.0](https://github.com/39plu/dumi-theme-skk/compare/v1.1.0...v1.2.0)
+
+<sup>Released on **2025-08-17**</sup>
+
+#### ✨ 新特性
+
+- 代码组展示优化，自动识别文件名，添加文件图标.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's improved
+
+- 代码组展示优化，自动识别文件名，添加文件图标 ([3e0cae2](https://github.com/39plu/dumi-theme-skk/commit/3e0cae2))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
 ## [Version&nbsp;1.1.0](https://github.com/39plu/dumi-theme-skk/compare/v1.0.0...v1.1.0)
 
 <sup>Released on **2025-08-10**</sup>
