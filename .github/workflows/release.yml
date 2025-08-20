@@ -2,6 +2,8 @@ name: Release CI
 on:
   push:
     branches: [main, alpha, beta, rc]
+  # 这个选项可以使你手动在 Action tab 页面触发工作流
+  workflow_dispatch:
 
 jobs:
   release:
