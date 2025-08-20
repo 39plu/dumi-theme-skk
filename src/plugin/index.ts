@@ -1,7 +1,8 @@
 import { EnableBy } from '@umijs/core/dist/types';
 import type { IApi } from 'dumi';
 import SSRPlugin from './SSRPlugin';
-import VuePresetPlugin from './VuePresetPlugin';
+import VueCommon from './vue/VueCommon';
+import VuePresetPlugin from './vue/VuePresetPlugin';
 
 /*
  * SSR 抽取样式
@@ -34,7 +35,7 @@ const SkkPlugin = (api: IApi) => {
   if (api.userConfig.skk) {
     // 开启Vue解析插件
     if (api.userConfig.skk.enableVue) {
-      console.log('启用vue解析插件');
+      VueCommon(api);
       VuePresetPlugin(api);
     }
   }

@@ -1,14 +1,14 @@
 import { BABEL_STANDALONE_CDN, getPkgPath, getPluginPath } from '@dumijs/preset-vue/dist/shared';
-import { VueSfcTechStack } from '@dumijs/preset-vue/dist/vue/techStack/sfc';
 import type { IApi } from 'dumi';
 import { fsExtra } from 'dumi/plugin-utils';
 import { join } from 'path';
+import { VueSfcTechStack } from './sfc';
 
 const COMPILE_FILENAME = 'compiler.mjs';
 const RENDERER_FILENAME = 'renderer.mjs';
 const PREFLIGHT_FILENAME = 'preflight.mjs';
 
-const VuePresetPlugin = (api: IApi) => {
+const registerTechStack = (api: IApi) => {
   const vueConfig = api.userConfig?.vue;
 
   const pkgPath = getPkgPath('@dumijs/preset-vue', api.cwd);
@@ -61,4 +61,4 @@ const VuePresetPlugin = (api: IApi) => {
   });
 };
 
-export default VuePresetPlugin;
+export default registerTechStack;
