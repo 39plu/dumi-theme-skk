@@ -220,11 +220,7 @@ importers:
         specifier: latest
         version: 3.2.4(@types/debug@4.1.12)(@types/node@20.5.1)(jiti@1.21.7)(jsdom@22.1.0)(less@4.4.0)(lightningcss@1.22.1)(sass@1.54.0)(terser@5.43.1)
 
-  example:
-    dependencies:
-      vue:
-        specifier: ^3.5.18
-        version: 3.5.18(typescript@5.9.2)
+  example: {}
 
 packages:
 
