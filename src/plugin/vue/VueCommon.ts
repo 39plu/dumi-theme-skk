@@ -1,4 +1,4 @@
-import { VueApiParser, type VueParserOptions } from '@dumijs/preset-vue/dist/atomParser';
+import { type VueParserOptions } from '@dumijs/preset-vue/dist/atomParser';
 import type { IApi } from 'dumi';
 
 export default (api: IApi) => {
@@ -30,8 +30,6 @@ export default (api: IApi) => {
     Object.assign(options, parserOptions);
 
     if (!options.entryFile || !options.resolveDir) return memo;
-
-    api.service.atomParser = VueApiParser(options as VueParserOptions);
     return memo;
   });
 };
