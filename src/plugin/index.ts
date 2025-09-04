@@ -1,5 +1,6 @@
 import { EnableBy } from '@umijs/core/dist/types';
 import type { IApi } from 'dumi';
+import MediumZoomPlugin from './mediumZoom/index';
 import SSRPlugin from './SSRPlugin';
 import VueCommon from './vue/VueCommon';
 import VuePresetPlugin from './vue/VuePresetPlugin';
@@ -26,6 +27,12 @@ const SkkPlugin = (api: IApi) => {
               babelStandaloneCDN: zod.string().optional(),
             })
             .optional(),
+          mediumZoom: zod
+            .object({
+              cdn: zod.string().optional(),
+              enable: zod.boolean().optional(),
+            })
+            .optional(),
         });
       },
     },
@@ -37,6 +44,10 @@ const SkkPlugin = (api: IApi) => {
     if (api.userConfig.skk.enableVue) {
       VueCommon(api);
       VuePresetPlugin(api);
+    }
+    // 开启图片放大缩小插件
+    if (api.userConfig.skk.mediumZoom?.enable !== false) {
+      MediumZoomPlugin(api);
     }
   }
 
