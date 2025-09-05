@@ -37,19 +37,6 @@ import React from 'react';
 
 export default () => <>Demo 演示</>;
 \`\`\`
-
-\`\`\`vue [App.vue]
-<script setup>
-  import { ref } from 'vue'
-
-  const msg = ref('Hello World!')
-</script>
-
-<template>
-  <h1>{{ msg }}</h1>
-  <input v-model="msg" />
-</template>
-\`\`\`
 :::
 `.trim();
 
@@ -84,19 +71,6 @@ export default defineConfig({
 import React from 'react';
 
 export default () => <>Demo 演示</>;
-```
-
-```vue [App.vue]
-<script setup>
-import { ref } from 'vue';
-
-const msg = ref('Hello World!');
-</script>
-
-<template>
-  <h1>{{ msg }}</h1>
-  <input v-model="msg" />
-</template>
 ```
 
 :::

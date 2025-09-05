@@ -1,10 +1,8 @@
-import type { SiteThemeConfig } from '@39nyx/dumi-theme-skk';
+import { type SiteThemeConfig } from '@39nyx/dumi-theme-skk';
 import { defineConfig } from 'dumi';
 import path from 'path';
 
 import { homepage, name } from '../package.json';
-
-const isProd = process.env.NODE_ENV === 'production';
 
 const themeConfig: SiteThemeConfig = {
   name: 'Ant Design Style Dumi Theme',
@@ -44,5 +42,8 @@ export default defineConfig({
     jsStrategy: 'granularChunks',
   },
   // @ts-ignore
-  ssr: isProd ? {} : false,
+  // ssr: isProd ? {} : false,
+  skk: {
+    enableVue: true,
+  },
 });

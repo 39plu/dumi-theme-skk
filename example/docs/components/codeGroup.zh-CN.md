@@ -37,19 +37,6 @@ import React from 'react';
 
 export default () => <>Demo 演示</>;
 \`\`\`
-
-\`\`\`vue [App.vue]
-<script setup>
-  import { ref } from 'vue'
-
-  const msg = ref('Hello World!')
-</script>
-
-<template>
-  <h1>{{ msg }}</h1>
-  <input v-model="msg" />
-</template>
-\`\`\`
 :::
 `.trim();
 
@@ -86,19 +73,6 @@ import React from 'react';
 export default () => <>Demo 演示</>;
 ```
 
-```vue [App.vue]
-<script setup>
-import { ref } from 'vue';
-
-const msg = ref('Hello World!');
-</script>
-
-<template>
-  <h1>{{ msg }}</h1>
-  <input v-model="msg" />
-</template>
-```
-
 :::
 
 目前支持的文件图标有
@@ -109,3 +83,39 @@ const msg = ref('Hello World!');
 - ts
 - tsx
 - vue
+
+```vue
+<script setup lang="ts">
+import { type Ref, ref, useTemplateRef } from 'vue';
+
+const scrollHeight: Ref<number> = ref(100);
+
+const direction = ref('top');
+
+const scrollRef = useTemplateRef('scrollRef');
+
+function scrollTo() {
+  scrollRef.value?.scrollTo({
+    [direction.value]: scrollHeight.value,
+    behavior: 'smooth',
+  });
+}
+</script>
+
+<template>
+  <div>
+    <div ref="scrollRef" class="scroll-container">
+      <div class="scroll-content">
+        <p v-for="i in 100" :key="i">内容 {{ i }}</p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.scroll-container {
+  height: 200px;
+  overflow: auto;
+}
+</style>
+```

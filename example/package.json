@@ -1,4 +1,8 @@
 {
+  "name": "example",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dumi example",
   "scripts": {
     "build": "dumi build",
     "build:analyze": "ANALYZE=1 dumi build",
@@ -6,5 +10,8 @@
     "preview": "dumi preview",
     "setup": "dumi setup",
     "start": "dumi dev"
+  },
+  "dependencies": {
+    "vue": "^3.5.18"
   }
 }
