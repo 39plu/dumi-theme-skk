@@ -9,7 +9,7 @@ const RENDERER_FILENAME = 'renderer.mjs';
 const PREFLIGHT_FILENAME = 'preflight.mjs';
 
 const registerTechStack = (api: IApi) => {
-  const vueConfig = api.userConfig?.vue;
+  const vueConfig: any = api.userConfig?.skk;
 
   const pkgPath = getPkgPath('@dumijs/preset-vue', api.cwd);
 

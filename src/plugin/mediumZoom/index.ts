@@ -33,24 +33,32 @@ export default (api: IApi) => {
       {
         src: mediumZoomCdn,
       },
-      {
-        content: `
-          const zoom = mediumZoom()
-          document.body.onclick = (e) => {
-            if (e.type === 'click') {
-              const target = e.target
-              const dataZoomAble = target.attributes.getNamedItem('data-zoom-able')
-              if (dataZoomAble) {
-                if (dataZoomAble.value === '') {
-                  zoom.attach(target)
-                  dataZoomAble.value = 'true'
-                  target.attributes.setNamedItem(dataZoomAble)
-                }
-              }
+    ];
+  });
+
+  api.addHTMLStyles(() => {
+    return `
+      .zoom-able { cursor: zoom-in }
+      .medium-zoom-overlay, .medium-zoom-image--opened { z-index: 980 }
+    `;
+  });
+
+  api.addHTMLScripts(() => {
+    return `
+      const zoom = mediumZoom()
+      document.body.onclick = (e) => {
+        if (e.type === 'click') {
+          const target = e.target
+          const dataZoomAble = target.attributes.getNamedItem('data-zoom-able')
+          if (dataZoomAble) {
+            if (dataZoomAble.value === '') {
+              zoom.attach(target)
+              dataZoomAble.value = 'true'
+              target.attributes.setNamedItem(dataZoomAble)
             }
           }
-        `,
-      },
-    ];
+        }
+      }
+    `;
   });
 };
