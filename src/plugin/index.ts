@@ -1,5 +1,6 @@
 import { EnableBy } from '@umijs/core/dist/types';
 import type { IApi } from 'dumi';
+import FileTreePlugin from './fileTree/index';
 import MediumZoomPlugin from './mediumZoom/index';
 import SSRPlugin from './SSRPlugin';
 import VueCommon from './vue/VueCommon';
@@ -22,6 +23,7 @@ const SkkPlugin = (api: IApi) => {
           directory: zod.string().optional(),
           tsconfigPath: zod.string().optional(),
           checkerOptions: zod.object({}).optional(),
+          fileTree: zod.boolean().optional(),
           compiler: zod
             .object({
               babelStandaloneCDN: zod.string().optional(),
@@ -48,6 +50,11 @@ const SkkPlugin = (api: IApi) => {
     // 开启图片放大缩小插件
     if (api.userConfig.skk.mediumZoom?.enable !== false) {
       MediumZoomPlugin(api);
+    }
+
+    // 开启目录树插件
+    if (api.userConfig.skk.fileTree) {
+      FileTreePlugin(api);
     }
   }
 
