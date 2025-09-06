@@ -31,9 +31,7 @@ const FileTreeContainer: React.FC<any> = (props) => {
       console.error(e);
     }
   }
-  console.log(tree);
   const treeData = treeTransform(tree);
-  console.log(treeData);
 
   return (
     <div {...props} style={{ border: '1px solid rgb(228, 233, 236)', padding: 20, ...props.style }}>
