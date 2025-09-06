@@ -41,5 +41,6 @@ export default defineConfig({
   // ssr: isProd ? {} : false,
   skk: {
     enableVue: true,
+    fileTree: true,
   },
 });
