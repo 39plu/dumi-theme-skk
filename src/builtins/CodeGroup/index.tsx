@@ -1,5 +1,6 @@
 import { Tabs, TabsProps } from 'antd';
 import { ISourceCodeProps } from 'dumi/theme-default/builtins/SourceCode';
+import SourceCode from 'dumi/theme/builtins/SourceCode';
 import React, { PropsWithChildren, ReactElement } from 'react';
 import { LanguageIcon } from '../../components/LanguageIcon';
 
@@ -21,13 +22,12 @@ const CodeGroup: React.FC<PropsWithChildren> = (props) => {
 
   const items: TabsProps['items'] = usefulChildren.map<Item>((child, idx) => {
     const { lang, title } = child.props ?? {};
-
     const key = String(child.key ?? idx);
     const label = title || lang || 'txt';
     return {
       key: key,
       label: <LanguageIcon name={label} />, // fallback to txt if no lang and title
-      children: child,
+      children: <SourceCode {...child.props} title={''} />,
     };
   });
   return <Tabs items={items} />;
