@@ -20,6 +20,7 @@ const SkkPlugin = (api: IApi) => {
       schema({ zod }) {
         return zod.object({
           enableVue: zod.boolean().optional(),
+          vueJsx: zod.boolean().optional(),
           directory: zod.string().optional(),
           tsconfigPath: zod.string().optional(),
           checkerOptions: zod.object({}).optional(),

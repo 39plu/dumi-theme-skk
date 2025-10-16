@@ -2,6 +2,7 @@ import { BABEL_STANDALONE_CDN, getPkgPath, getPluginPath } from '@dumijs/preset-
 import type { IApi } from 'dumi';
 import { fsExtra } from 'dumi/plugin-utils';
 import { join } from 'path';
+import { VueJSXTechStack } from './jsx';
 import { VueSfcTechStack } from './sfc';
 
 const COMPILE_FILENAME = 'compiler.mjs';
@@ -53,6 +54,14 @@ const registerTechStack = (api: IApi) => {
     };
     return memo;
   });
+
+  if (api.userConfig?.vueJsx) {
+    api.register({
+      key: 'registerTechStack',
+      stage: 0,
+      fn: () => VueJSXTechStack(runtimeOpts),
+    });
+  }
 
   api.register({
     key: 'registerTechStack',

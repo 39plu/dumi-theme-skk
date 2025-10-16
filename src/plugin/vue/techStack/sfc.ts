@@ -2,7 +2,7 @@ import { logger } from 'dumi/plugin-utils';
 import type { IDumiTechStackRuntimeOpts } from 'dumi/tech-stack-utils';
 import { defineTechStack, wrapDemoWithFn } from 'dumi/tech-stack-utils';
 import hashId from 'hash-sum';
-import { compile } from '../compiler/node';
+import { compile, compiler } from '../compiler/node';
 
 export const VueSfcTechStack = (runtimeOpts: IDumiTechStackRuntimeOpts) =>
   defineTechStack({
@@ -13,9 +13,14 @@ export const VueSfcTechStack = (runtimeOpts: IDumiTechStackRuntimeOpts) =>
     },
     onBlockLoad(args) {
       if (!args.path.endsWith('.vue')) return null;
+      const result = compiler.compileSFC({
+        id: args.path,
+        code: args.entryPointCode,
+        filename: args.filename,
+      });
       return {
         type: 'tsx',
-        content: '',
+        content: Array.isArray(result) ? '' : result.js,
       };
     },
     transformCode(raw, opts) {
