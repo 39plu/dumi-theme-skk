@@ -11,7 +11,7 @@ export function getConfig(config: Config, api: IApi) {
   // and include/exclude of webpack needs to be converted to the corresponding format for different systems.
   const dumiSrc = path.resolve(api.paths.absSrcPath);
 
-  if (api.userConfig?.vueJsx) {
+  if (api.userConfig.skk && api.userConfig.skk?.vueJsx) {
     const babelInUmi = config.module.rule('src').use('babel-loader').entries();
     // react jsx rules will only include the .dumi directory
     config.module.rule('jsx-ts-tsx').include.add(dumiSrc).end();
