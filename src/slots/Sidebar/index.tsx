@@ -1,23 +1,52 @@
-import { NavLink, useLocation } from 'dumi';
+import { NavLink, useLocation, useNavData } from 'dumi';
 import { memo } from 'react';
 
 import { handleFullSidebarData } from '@39nyx/dumi-theme-skk/utils/sidebar';
 import { useFullSidebarData } from 'dumi/dist/client/theme-api';
-import { ISidebarGroup } from 'dumi/dist/client/theme-api/types';
+import { INavItem, ISidebarGroup } from 'dumi/dist/client/theme-api/types';
 import { useStyles } from './style';
 
 interface SidebarProps {
   onSelect?: () => void;
 }
 
+function getLeafNodeLink(tree: INavItem) {
+  const result: string[] = [];
+  const list: INavItem[] = [tree];
+  while (list.length) {
+    const node = list.shift();
+    if (node && node.children) {
+      list.push(...node.children);
+    } else {
+      result.push(node?.link || '');
+    }
+  }
+  return result.filter((item: string) => !!item);
+}
+
 const Sidebar: React.FC<SidebarProps> = (props) => {
   const fullSidebar: Record<string, ISidebarGroup[]> = useFullSidebarData();
-  const sidebar = handleFullSidebarData(fullSidebar);
-  const { styles } = useStyles();
+  const nav = useNavData();
+  let navPaths: string[] = [];
+  nav
+    .filter((item) => item.children && item.children.length)
+    .forEach((item) => {
+      navPaths = getLeafNodeLink(item);
+    });
   const location = useLocation();
-  const paths = location.pathname.split('/').filter((item) => item);
-  const activeKey: string = `/${paths[0]}`;
-  let activeSidebar: ISidebarGroup[] = sidebar[activeKey] || [];
+  let activeSidebar: ISidebarGroup[] = [];
+  const navPath: string | undefined = navPaths.find(
+    (path: string) => location.pathname.startsWith(path) && fullSidebar[path],
+  );
+  if (navPath) {
+    activeSidebar = fullSidebar[navPath] || [];
+  } else {
+    const sidebar = handleFullSidebarData(fullSidebar);
+    const paths = location.pathname.split('/').filter((item) => item);
+    const activeKey: string = `/${paths[0]}`;
+    activeSidebar = sidebar[activeKey] || [];
+  }
+  const { styles } = useStyles();
   const isEmptySideBar = !fullSidebar;
 
   const onSelect = () => {
