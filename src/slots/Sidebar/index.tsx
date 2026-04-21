@@ -24,20 +24,39 @@ function getLeafNodeLink(tree: INavItem) {
   return result.filter((item: string) => !!item);
 }
 
+/**
+ * 判断path1是否包含path2
+ * @param path1
+ * @param path2
+ */
+function pathInclude(path1: string, path2: string) {
+  if (path1.startsWith(path2)) {
+    const arr1 = path1.split('/');
+    const arr2 = path2.split('/');
+    return arr2.every((item, index) => {
+      return item === arr1[index];
+    });
+  }
+  return false;
+}
+
 const Sidebar: React.FC<SidebarProps> = (props) => {
   const fullSidebar: Record<string, ISidebarGroup[]> = useFullSidebarData();
   const nav = useNavData();
   let navPaths: string[] = [];
   nav
-    .filter((item) => item.children && item.children.length)
+    .filter((item) => {
+      return item.children && item.children.length;
+    })
     .forEach((item) => {
       navPaths = getLeafNodeLink(item);
     });
   const location = useLocation();
   let activeSidebar: ISidebarGroup[] = [];
-  const navPath: string | undefined = navPaths.find(
-    (path: string) => location.pathname.startsWith(path) && fullSidebar[path],
-  );
+
+  const navPath: string | undefined = navPaths.find((path: string) => {
+    return pathInclude(location.pathname, path) && !!fullSidebar[path];
+  });
   if (navPath) {
     activeSidebar = fullSidebar[navPath] || [];
   } else {

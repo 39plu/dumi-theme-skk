@@ -92,6 +92,11 @@ export interface SiteThemeConfig {
     yueque?: string;
     linkedin?: string;
   };
+
+  /**
+   *
+   */
+  sidebarGroupPath?: Array<string>
 }
 
 export type SiteConfigToken = Partial<
