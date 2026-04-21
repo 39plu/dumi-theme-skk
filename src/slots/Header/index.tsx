@@ -63,7 +63,7 @@ const Header: FC = () => {
             <Flexbox horizontal className={styles.left}>
               <Logo />
             </Flexbox>
-            <Flexbox style={{ marginLeft: 48, alignSelf: 'end' }}>
+            <Flexbox style={{ marginLeft: 48, alignSelf: 'end', flex: 1 }}>
               <Navbar />
             </Flexbox>
             <section className={styles.right}>
